@@ -168,6 +168,26 @@ controller.hears(['uptime','identify yourself','who are you','what is your name'
 
 });
 
+// Added tasks
+controller.hears(['(select|選んで) (.*)'], ['message_received','ambient'], function(bot, message) {
+  var member = message.text.match(/(select|選んで) (.*)/i)[2].split(',')
+  var name = member[Math.floor(Math.random() * member.length)];
+  bot.reply(message, 'よろしく、' + name + '！')
+});
+
+controller.hears(['(task|タスク) (.*)'], ['message_received','ambient'], function(bot, message) {
+  bot.api.groups.list({group: message.channel},function(err,response) {
+    users = response.groups[0].members.filter(function(v) {
+      return v != bot.identity.id;
+    });
+    var targetId = users[Math.floor(Math.random() * users.length)];
+    bot.api.users.info({user: targetId}, function(err,response) {
+      bot.reply(message, '\"' + message.text.match(/(task|タスク) (.*)/i)[2] + '\"' + ' はまかせた、' + response.user.name + '！！');
+    });
+
+  });
+});
+
 function formatUptime(uptime) {
     var unit = 'second';
     if (uptime > 60) {

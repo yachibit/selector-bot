@@ -1,3 +1,29 @@
+# selector-bot
+Clone https://github.com/howdyai/botkit
+
+## usage at slack
+
+### To selected from choices
+```
+select a,b,c
+```
+or
+```
+選んで a,b,c
+```
+
+
+### To choose a person to leave a task from the channel members
+```
+task Make lunch
+```
+or
+```
+タスク ランチ作る
+```
+
+---
+
 # [Botkit](http://howdy.ai/botkit) - Building Blocks for Building Bots
 
 [![npm](https://img.shields.io/npm/v/botkit.svg)](https://www.npmjs.com/package/botkit)
